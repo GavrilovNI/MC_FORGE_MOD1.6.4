@@ -38,13 +38,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
         if(metal.hasOre()) {
             ITag.INamedTag<Block> oreTag = metalTag.getOre_BlockTag();
-            getOrCreateBuilder(oreTag).add(metal.get_ore().get());
+            getOrCreateBuilder(oreTag).add(metal.getOre().get());
             getOrCreateBuilder(Tags.Blocks.ORES).addTag(oreTag);
         }
 
         if(metal.hasBlock()) {
             ITag.INamedTag<Block> storageBlockTag = metalTag.getBlock_BlockTag();
-            getOrCreateBuilder(storageBlockTag).add(metal.get_block().get());
+            getOrCreateBuilder(storageBlockTag).add(metal.getBlock().get());
             getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(storageBlockTag);
         }
 

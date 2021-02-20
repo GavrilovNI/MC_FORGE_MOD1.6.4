@@ -5,6 +5,7 @@ package me.doggy.tutorial.data;
 import me.doggy.tutorial.Main;
 import me.doggy.tutorial.data.client.ModBlockStateProvider;
 import me.doggy.tutorial.data.client.ModItemModelProvider;
+import me.doggy.tutorial.data.loot.ModLootTables;
 import me.doggy.tutorial.data.recipes.ModRecipesProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,6 +31,7 @@ public class DataGenerators {
         gen.addProvider(blockTags);
         gen.addProvider(new ModItemTagsProvider(gen, blockTags, existingFileHelper));
 
+        gen.addProvider(new ModLootTables(gen));
         gen.addProvider(new ModRecipesProvider(gen));
     }
 

@@ -22,17 +22,17 @@ public class MetalTag {
     {
         this._metal = metal;
 
-        if(_metal.get_ingot() != null)
+        if(_metal.getIngot() != null)
             _ingot = ModTags.Items.makeTag(namespaceIn, "ingots/"+metal.getName());
-        if(_metal.get_nugget() != null)
+        if(_metal.getNugget() != null)
             _nugget = ModTags.Items.makeTag(namespaceIn, "nuggets/"+metal.getName());
 
-        if(_metal.get_ore() != null) {
+        if(_metal.getOre() != null) {
             _oreItem = ModTags.Items.makeTag(namespaceIn, "ores/" + metal.getName());
             _oreBlock = ModTags.Blocks.makeTag(namespaceIn, "ores/" + metal.getName());
         }
 
-        if(_metal.get_block() != null) {
+        if(_metal.getBlock() != null) {
             _blockItem = ModTags.Items.makeTag(namespaceIn, "storage_blocks/" + metal.getName());
             _blockBlock = ModTags.Blocks.makeTag(namespaceIn, "storage_blocks/" + metal.getName());
         }

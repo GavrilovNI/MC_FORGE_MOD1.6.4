@@ -8,28 +8,44 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class Metal
 {
+    public enum OreDrop
+    {
+        itself,
+        ingot
+    }
+    public class MetalSettings
+    {
+        public OreDrop oreDrop = OreDrop.itself;
+        public float smeltingXp = 0.5f;
+        public int cookingTime = 200;
+    }
+
     private String name;
     private RegistryObject<Item> _ingot;
     private RegistryObject<Item> _nugget;
     private RegistryObject<Block> _ore;
     private RegistryObject<Block> _block;
 
-    private float _smeltingXp;
-    private int _cookingTime;
 
     public String getName(){ return name; }
-    public RegistryObject<Item> get_ingot() { return _ingot; }
-    public RegistryObject<Item> get_nugget() { return _nugget; }
-    public RegistryObject<Block> get_ore() { return _ore; }
-    public RegistryObject<Block> get_block() { return _block; }
-
-    public float getSmeltingXp() { return _smeltingXp; }
-    public int getCookingTime() { return _cookingTime; }
+    public RegistryObject<Item> getIngot() { return _ingot; }
+    public RegistryObject<Item> getNugget() { return _nugget; }
+    public RegistryObject<Block> getOre() { return _ore; }
+    public RegistryObject<Block> getBlock() { return _block; }
 
     public boolean hasIngot() { return _ingot != null; }
     public boolean hasNugget() { return _nugget != null; }
     public boolean hasOre() { return _ore != null; }
     public boolean hasBlock() { return _block != null; }
+
+
+    public final MetalSettings settings = new MetalSettings();
+
+    public Metal setOreDrop(OreDrop oreDrop) { this.settings.oreDrop = oreDrop; return this; }
+    public Metal setSmeltingXp(int smeltingXp) { this.settings.smeltingXp = smeltingXp; return this; }
+    public Metal setCookingTime(int cookingTime) { this.settings.cookingTime = cookingTime; return this; }
+
+
 
     public Metal(String name)
     {
@@ -52,12 +68,10 @@ public class Metal
         }
         return this;
     }
-    public Metal registerOre(java.util.function.Supplier<Block> sup, float smeltingXp, int cookingTime)
+    public Metal registerOre(java.util.function.Supplier<Block> sup)
     {
         if(_ore == null)
         {
-            this._smeltingXp = smeltingXp;
-            this._cookingTime = cookingTime;
             _ore = ModBlocks.register(name+"_ore", sup);
         }
         return this;
@@ -70,4 +84,6 @@ public class Metal
         }
         return this;
     }
+
+
 }

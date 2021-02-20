@@ -1,11 +1,9 @@
 package me.doggy.tutorial.data;
 
 import me.doggy.tutorial.Main;
-import me.doggy.tutorial.setup.ModMetals;
 import me.doggy.tutorial.setup.ModTags;
 import me.doggy.tutorial.setup.metals.Metal;
 import me.doggy.tutorial.setup.metals.MetalTag;
-import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -51,14 +49,14 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         if(metal.hasIngot())
         {
             ITag.INamedTag<Item> ingotTag = metalTag.getIngot_ItemTag();
-            getOrCreateBuilder(ingotTag).add(metal.get_ingot().get());
+            getOrCreateBuilder(ingotTag).add(metal.getIngot().get());
             getOrCreateBuilder(Tags.Items.INGOTS).addTag(ingotTag);
         }
 
         if(metal.hasNugget())
         {
             ITag.INamedTag<Item> nuggetTag = metalTag.getNugget_ItemTag();
-            getOrCreateBuilder(nuggetTag).add(metal.get_nugget().get());
+            getOrCreateBuilder(nuggetTag).add(metal.getNugget().get());
             getOrCreateBuilder(Tags.Items.NUGGETS).addTag(nuggetTag);
         }
 

@@ -10,7 +10,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Consumer;
 
@@ -31,7 +30,7 @@ public class ModRecipesProvider extends RecipeProvider {
         Metal metal = metalTag.getMetal();
         if (metal.hasOre()) {
 
-            CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(metalTag.getOre_ItemTag()), metal.get_ingot().get(), metal.getSmeltingXp(), metal.getCookingTime())
+            CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(metalTag.getOre_ItemTag()), metal.getIngot().get(), metal.settings.smeltingXp, metal.settings.cookingTime)
                     .addCriterion("has_item", hasItem(metalTag.getOre_ItemTag()))
                     .build(consumer, new ResourceLocation(metal.getName() + "_ore_smelting"));
         }
@@ -41,12 +40,12 @@ public class ModRecipesProvider extends RecipeProvider {
             InventoryChangeTrigger.Instance hasIngot = hasItem(metalTag.getIngot_ItemTag());
 
             ITag<Item> ingotTag = metalTag.getIngot_ItemTag();
-            IItemProvider ingot = metal.get_ingot().get();
+            IItemProvider ingot = metal.getIngot().get();
 
             if (metal.hasBlock()) {
 
                 ITag<Item> blockTag = metalTag.getBlock_ItemTag();
-                IItemProvider block = metal.get_block().get();
+                IItemProvider block = metal.getBlock().get();
 
                 ShapelessRecipeBuilder.shapelessRecipe(ingot, 9)
                         .addIngredient(blockTag)
@@ -64,7 +63,7 @@ public class ModRecipesProvider extends RecipeProvider {
             if (metal.hasNugget()) {
 
                 ITag<Item> nuggetTag = metalTag.getNugget_ItemTag();
-                IItemProvider nugget = metal.get_block().get();
+                IItemProvider nugget = metal.getBlock().get();
 
                 ShapelessRecipeBuilder.shapelessRecipe(nugget, 9)
                         .addIngredient(ingotTag)
